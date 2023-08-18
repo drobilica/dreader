@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/colors.css') }}"> <!-- Including colors.css -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/favicon/apple-touch-icon.png') }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon/favicon-32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicon/favicon-16x16.png') }}">
+  <link rel="manifest" href="{{ url_for('static', filename='img/favicon/site.webmanifest') }}">
+  <link rel="mask-icon" href="{{ url_for('static', filename='img/favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  {% if title %}
+    <title>{{ title }} - Feeder</title>
+  {% else %}
+    <title>Welcome to Hartija</title>
+  {% endif %}
+</head>
+<body>
+
+<div class="grid-container">
+  <div class="grid-menu dark-grey">
+    <div class="vertical-menu ">
+      <a href="{{ url_for('.index') }}" >HOME</a>
+      <a href="/explore">Explore </a>
+      <a href="https://drobilica.com/cv">About</a>
+    </div>
+  </div>
+  <div class="grid-menu-header centrate light-grey">Hartija</div>
+  <div class="grid-main overflow ">
+  {% block content %}
+  <div class="feed-content">
+    {% for entry in feed.entries %}
+      <div class="article">
+        <h3 class="article-title"><a href="{{ entry.link }}">{{ entry.title }}</a></h3>
+        <div class="article-content">
+          {% if entry.media %}
+            <img src="{{ entry.media[0].url }}" alt="Article Image" class="article-image">
+          {% endif %}
+          <p class="summary">{{ entry.summary }}</p>
+        </div>
+        <p class="article-date"><small>Published on: {{ entry.published }}</small></p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+
+
+  </div>
+  <div class="grid-sidebar dark-grey">
+    {% block right_content %}{% endblock %}
+  </div>
+  <div class="grid-footer centrate light-grey"> Copyright © <script>document.write(new Date().getFullYear())</script>&nbsp;<a href="https://drobilica.com/">  drobilica.com</a></div>
+</div>
+
+</body>
+</html>
