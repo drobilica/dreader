@@ -1,0 +1,9 @@
+Tech:
+  - name: "VERGE"
+    url: "http://www.theverge.com/rss/full.xml"
+  - name: "Forbes"
+    url: "http://www.forbes.com/entrepreneurs/index.xml"
+  - name: "Engaget"
+    url: "http://www.engadget.com/rss-full.xml"
+  - name: "mashable"
+    url: "https://mashable.com/feeds/rss/all"

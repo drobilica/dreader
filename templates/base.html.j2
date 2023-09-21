@@ -27,19 +27,49 @@
   <div class="grid-main overflow ">
   {% block content %}
     <div class="feed-content">
-      {% for entry in feed.entries %}
-        <div class="article">
-          <h3 class="article-title"><a href="{{ entry.link }}">{{ entry.title }}</a></h3>
-          <div class="article-content">
-            {% if entry.media %}
-              <img src="{{ entry.media[0].url }}" alt="Article Image" class="article-image">
-            {% endif %}
-            <p class="summary">{{ entry.summary }}</p>
-          </div>
-          <p class="article-date"><small>Published on: {{ entry.published }}</small></p>
-        </div>
-      {% endfor %}
+    {% for group, feeds in all_feeds.items() %}
+        <h1>{{ group }}</h1>
+        {% for feed in feeds %}
+            <h2>{{ feed.name }}</h2>
+            {% for entry in feed.entries %}
+                <div class="feed-entry">
+                    <div class="entry-image">
+                        {% if entry.media_thumbnail %}
+                            <img src="{{ entry.media_thumbnail[0].url }}" alt="Thumbnail">
+                        {% endif %}
+                    </div>
+                    <div class="entry-content">
+                        <h3><a href="{{ entry.link }}">{{ entry.title }}</a></h3>
+                        <p>{{ entry.summary[:200] }}{% if entry.summary|length > 200 %}...{% endif %}</p>
+                    </div>
+                    <div class="entry-footer">
+                        <small>Published on: {{ entry.published }}</small>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+</div>
+
+
+    {#this works
+      <div class="feed-content">
+        {% for group, feeds in all_feeds.items() %}
+            <h1>{{ group }}</h1>
+          {% for feed in feeds %}
+                <h2>{{ feed.name }}</h2>
+                {% for entry in feed.entries %}
+                    <div class="feed-entry">
+                      <h3><a href="{{ entry.link }}">{{ entry.title }}</a></h3>
+                        <p>{{ entry.summary }}</p>
+                        <small>Published on: {{ entry.published }}</small>
+                    </div>
+              {% endfor %}
+            {% endfor %}
+        {% endfor %}
     </div>
+ #}
+
   {% endblock %}
 
 
