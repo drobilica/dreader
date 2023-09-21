@@ -1,6 +1,6 @@
 Tech:
-  - name: "VERGE"
-    url: "http://www.theverge.com/rss/full.xml"
+  # - name: "VERGE"
+  #   url: "http://www.theverge.com/rss/full.xml"
   - name: "Forbes"
     url: "http://www.forbes.com/entrepreneurs/index.xml"
   - name: "Engaget"
