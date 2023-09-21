@@ -20,21 +20,32 @@ def index():
             feed_url = feed_info['url']
             feed = feedparser.parse(feed_url)
             for entry in feed.entries:
-                soup = BeautifulSoup(entry.summary, 'html.parser')
+                # Use media:thumbnail if available
+                if 'media_thumbnail' in entry:
+                    continue
+                
+                # Use media:content if available
+                if 'media_content' in entry and entry.media_content[0].get('url', None):
+                    entry.media_thumbnail = [{"url": entry.media_content[0]['url']}]
+                    continue
+                
+                # Fallback to parsing 'description' or 'summary'
+                description = entry.get('description', entry.get('summary', ''))
+                
+                if isinstance(description, list):
+                    description = ' '.join(description)
+                
+                soup = BeautifulSoup(description, 'html.parser')
                 img_tag = soup.find('img')
-
-                # Check if media:content is available in the feed
-                media_content = entry.get('media_content', [{}])[0].get('url', None)
                 
                 if img_tag:
                     entry.media_thumbnail = [{"url": img_tag['src']}]
-                elif media_content:
-                    entry.media_thumbnail = [{"url": media_content}]
-                    
+                
                 entry.summary = soup.get_text()
+                
             group_feeds.append({"name": feed_info['name'], "entries": feed.entries})
         all_feeds[group] = group_feeds
-
+    
     return render_template('base.html.j2', all_feeds=all_feeds)
 
 if __name__ == '__main__':

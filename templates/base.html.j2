@@ -35,7 +35,7 @@
                 <div class="feed-entry">
                     <div class="entry-image">
                         {% if entry.media_thumbnail %}
-                            <img src="{{ entry.media_thumbnail[0].url }}" alt="Thumbnail">
+                            <img src="{{ entry.media_thumbnail[0].url }}" alt="Thumbnail" loading="lazy">
                         {% endif %}
                     </div>
                     <div class="entry-content">
@@ -43,7 +43,7 @@
                         <p>{{ entry.summary[:200] }}{% if entry.summary|length > 200 %}...{% endif %}</p>
                     </div>
                     <div class="entry-footer">
-                        <small>Published on: {{ entry.published }}</small>
+                        {# <small>Published on: {{ entry.published }}</small> #}
                     </div>
                 </div>
             {% endfor %}

@@ -5,5 +5,5 @@ Tech:
     url: "http://www.forbes.com/entrepreneurs/index.xml"
   - name: "Engaget"
     url: "http://www.engadget.com/rss-full.xml"
-  - name: "mashable"
-    url: "https://mashable.com/feeds/rss/all"
+  - name: "Wired"
+    url: "https://www.wired.com/feed/rss"
