@@ -7,3 +7,5 @@ Tech:
     url: "http://www.engadget.com/rss-full.xml"
   - name: "Wired"
     url: "https://www.wired.com/feed/rss"
+  - name: "CNET"
+    url: "https://www.cnet.com/rss/news/"
