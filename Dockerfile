@@ -1,5 +1,5 @@
 # Start by pulling the Python image
-FROM python:3.8-alpine
+FROM python:3.8
 
 # Upgrade pip as root
 RUN pip install --upgrade pip
@@ -17,5 +17,4 @@ RUN pip install -r requirements.txt
 COPY . /app
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_PORT=3000
-# Configure the container to run in an executed manner
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+ENV FLASK_DEBUG=true
