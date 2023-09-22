@@ -9,7 +9,21 @@ services:
     depends_on:
       - redis
     command: ["flask", "run", "--host=0.0.0.0", "--port=3000", "--reload"]
+
   redis:
     image: "redis:alpine"
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
     ports:
       - "6379:6379"
+    volumes:
+      - type: tmpfs
+        target: /data
+
+  redis-commander:
+    image: "rediscommander/redis-commander:latest"
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis

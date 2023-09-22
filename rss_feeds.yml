@@ -9,3 +9,5 @@ Tech:
     url: "https://www.wired.com/feed/rss"
   - name: "CNET"
     url: "https://www.cnet.com/rss/news/"
+  - name: 'ZDNET'
+    url: 'https://www.zdnet.com/news/rss.xml'
