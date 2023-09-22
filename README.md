@@ -70,4 +70,4 @@ Conclusion
 This web application serves as a consolidated platform for accessing articles from various topics and sources. Using Redis for caching makes the application more efficient by reducing the need to fetch articles from the web on every visit.
 
 
-![GraphViz Diagram](./path/to/graphviz.svg)
+![GraphViz Diagram](graphviz.svg)
